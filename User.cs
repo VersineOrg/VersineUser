@@ -24,7 +24,7 @@ public class User
         ticketCount = 10;
         avatar = "https://i.imgur.com/k7eDNwW.jpg";
         bio = "Hey, I'm using Versine!";
-        banner = "https://images7.alphacoders.com/421/thumb-1920-421957.jpg";
+        banner = "https://i.imgur.com/iaD9ttC.png";
         color = "28DBB7";
         friends = new List<BsonObjectId>();
         incomingFriendRequests = new List<BsonObjectId>();
