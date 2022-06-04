@@ -48,6 +48,17 @@ public class User
 
     public BsonDocument ToBson()
     {
+        BsonArray incomingfriendrequeststemp = new BsonArray();
+        BsonArray outgoingFriendRequeststemp = new BsonArray();
+        foreach (var id in incomingfriendrequests)
+        {
+            incomingfriendrequeststemp.Add(id);
+        }
+
+        foreach (var id in outgoingFriendRequests)
+        {
+            outgoingFriendRequeststemp.Add(id);
+        }
         return new BsonDocument((IEnumerable<BsonElement>)
             new BsonElement[] 
             { 
@@ -60,8 +71,8 @@ public class User
                 new ("banner", banner),
                 new ("color", color),
                 new ("friends", new BsonArray(friends)),
-                new ("incomingFriendRequests", new BsonArray(incomingFriendRequests)),
-                new ("outgoingFriendRequests", new BsonArray(outgoingFriendRequests)) 
+                new ("incomingFriendRequests", incomingfriendrequeststemp),
+                new ("outgoingFriendRequests", outgoingFriendRequeststemp) 
             });
     }
 }
