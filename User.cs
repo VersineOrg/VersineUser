@@ -25,7 +25,7 @@ public class User
         avatar = "https://i.imgur.com/k7eDNwW.jpg";
         bio = "Hey, I'm using Versine!";
         banner = "https://i.imgur.com/iaD9ttC.png";
-        color = "28DBB7";
+        color = "#28DBB7";
         friends = new List<BsonObjectId>();
         incomingFriendRequests = new List<BsonObjectId>();
         outgoingFriendRequests = new List<BsonObjectId>();
@@ -33,6 +33,27 @@ public class User
 
     public User(BsonDocument document)
     {
+        friends = new List<BsonObjectId>();
+        BsonValue[] bsonFriends = document.GetElement("friends").Value.AsBsonArray.ToArray();
+        foreach (var bsonFriend in bsonFriends)
+        {
+            friends.Add(bsonFriend.AsObjectId);
+        }
+        
+        incomingFriendRequests = new List<BsonObjectId>();
+        BsonValue[] bsonIncomingFriendRequests = document.GetElement("friends").Value.AsBsonArray.ToArray();
+        foreach (var bsonIncomingFriendRequest in bsonIncomingFriendRequests)
+        {
+            incomingFriendRequests.Add(bsonIncomingFriendRequest.AsObjectId);
+        }
+        
+        outgoingFriendRequests = new List<BsonObjectId>();
+        BsonValue[] bsonOutgoingFriendRequests = document.GetElement("friends").Value.AsBsonArray.ToArray();
+        foreach (var bsonOutgoingFriendRequest in bsonOutgoingFriendRequests)
+        {
+            outgoingFriendRequests.Add(bsonOutgoingFriendRequest.AsObjectId);
+        }
+        
         username = document.GetElement("username").Value.AsString;
         password = document.GetElement("password").Value.AsString;;
         ticket = document.GetElement("ticket").Value.AsString;;
@@ -40,25 +61,11 @@ public class User
         avatar = "https://i.imgur.com/k7eDNwW.jpg";
         bio = "Hey, I'm using Versine!";
         banner = "https://i.imgur.com/iaD9ttC.png";
-        color = "28DBB7";
-        friends = new List<BsonObjectId>();
-        incomingFriendRequests = new List<BsonObjectId>();
-        outgoingFriendRequests = new List<BsonObjectId>();
+        color = "#28DBB7";
     }
 
     public BsonDocument ToBson()
     {
-        BsonArray incomingfriendrequeststemp = new BsonArray();
-        BsonArray outgoingFriendRequeststemp = new BsonArray();
-        foreach (var id in incomingFriendRequests)
-        {
-            incomingfriendrequeststemp.Add(id);
-        }
-
-        foreach (var id in outgoingFriendRequests)
-        {
-            outgoingFriendRequeststemp.Add(id);
-        }
         return new BsonDocument((IEnumerable<BsonElement>)
             new BsonElement[] 
             { 
@@ -71,8 +78,8 @@ public class User
                 new ("banner", banner),
                 new ("color", color),
                 new ("friends", new BsonArray(friends)),
-                new ("incomingFriendRequests", incomingfriendrequeststemp),
-                new ("outgoingFriendRequests", outgoingFriendRequeststemp) 
+                new ("incomingFriendRequests", new BsonArray(incomingFriendRequests)),
+                new ("outgoingFriendRequests", new BsonArray(outgoingFriendRequests)) 
             });
     }
 }
