@@ -50,7 +50,7 @@ public class User
     {
         BsonArray incomingfriendrequeststemp = new BsonArray();
         BsonArray outgoingFriendRequeststemp = new BsonArray();
-        foreach (var id in incomingfriendrequests)
+        foreach (var id in incomingFriendRequests)
         {
             incomingfriendrequeststemp.Add(id);
         }
