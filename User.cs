@@ -41,14 +41,14 @@ public class User
         }
         
         incomingFriendRequests = new List<BsonObjectId>();
-        BsonValue[] bsonIncomingFriendRequests = document.GetElement("friends").Value.AsBsonArray.ToArray();
+        BsonValue[] bsonIncomingFriendRequests = document.GetElement("incomingFriendRequests").Value.AsBsonArray.ToArray();
         foreach (var bsonIncomingFriendRequest in bsonIncomingFriendRequests)
         {
             incomingFriendRequests.Add(bsonIncomingFriendRequest.AsObjectId);
         }
         
         outgoingFriendRequests = new List<BsonObjectId>();
-        BsonValue[] bsonOutgoingFriendRequests = document.GetElement("friends").Value.AsBsonArray.ToArray();
+        BsonValue[] bsonOutgoingFriendRequests = document.GetElement("outgoingFriendRequests").Value.AsBsonArray.ToArray();
         foreach (var bsonOutgoingFriendRequest in bsonOutgoingFriendRequests)
         {
             outgoingFriendRequests.Add(bsonOutgoingFriendRequest.AsObjectId);
