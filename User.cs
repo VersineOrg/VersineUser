@@ -55,13 +55,13 @@ public class User
         }
         
         username = document.GetElement("username").Value.AsString;
-        password = document.GetElement("password").Value.AsString;;
-        ticket = document.GetElement("ticket").Value.AsString;;
-        ticketCount = 10;
-        avatar = "https://i.imgur.com/k7eDNwW.jpg";
-        bio = "Hey, I'm using Versine!";
-        banner = "https://i.imgur.com/iaD9ttC.png";
-        color = "#28DBB7";
+        password = document.GetElement("password").Value.AsString;
+        ticket = document.GetElement("ticket").Value.AsString;
+        ticketCount = document.GetElement("ticketCount").Value.AsInt32;
+        avatar = document.GetElement("avatar").Value.AsString;
+        bio = document.GetElement("avatar").Value.AsString;
+        banner = document.GetElement("banner").Value.AsString;
+        color = document.GetElement("color").Value.AsString;
     }
 
     public BsonDocument ToBson()
