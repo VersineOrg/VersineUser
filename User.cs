@@ -59,7 +59,7 @@ public class User
         ticket = document.GetElement("ticket").Value.AsString;
         ticketCount = document.GetElement("ticketCount").Value.AsInt32;
         avatar = document.GetElement("avatar").Value.AsString;
-        bio = document.GetElement("avatar").Value.AsString;
+        bio = document.GetElement("bio").Value.AsString;
         banner = document.GetElement("banner").Value.AsString;
         color = document.GetElement("color").Value.AsString;
     }
